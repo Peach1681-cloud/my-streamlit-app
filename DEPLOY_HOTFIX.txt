@@ -1,0 +1,21 @@
+วิธีอัปเดตบนเซิร์ฟเวอร์
+========================
+
+1. สำรองโฟลเดอร์ /root/my_3d_studio เดิม
+2. อัปโหลดไฟล์ทั้งหมดจากโฟลเดอร์ my_3d_studio ทับไฟล์เดิม
+   โดยเฉพาะ font_catalog.py, icon_catalog_v2.py, icon_picker.py,
+   โฟลเดอร์ icon, config.py,
+   ui_theme.py และโฟลเดอร์ pages
+3. หยุดโปรเซส Streamlit เดิม แล้วเปิดใหม่ เพื่อเคลียร์ config.py ที่ค้างในหน่วยความจำ
+
+ถ้าเปิดด้วยคำสั่งโดยตรง:
+    pkill -f "streamlit run app.py"
+    cd /root/my_3d_studio
+    streamlit run app.py --server.address 0.0.0.0 --server.port 8501
+
+ถ้าเปิดผ่าน systemd ให้ใช้ชื่อ service จริงของคุณแทน:
+    sudo systemctl restart <ชื่อ-service>
+
+จากนั้นกด Ctrl+F5 ที่หน้าเว็บหนึ่งครั้ง
+
+หมายเหตุ: ไม่ต้องลบโฟลเดอร์ generated_stls เดิม
